@@ -62,7 +62,7 @@ def image_analyser(im):
 
 st.set_page_config(layout="wide", page_title="Image color explorer")
 
-st.write("## Explore the colors of your image")
+st.write("## Explore the colos of your image")
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
