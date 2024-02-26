@@ -60,9 +60,9 @@ def image_analyser(im):
 
 
 
-st.set_page_config(layout="wide", page_title="Image color explorer")
+st.set_page_config(layout="wide", page_title="IMAGE COLOR ANALYSE")
 
-st.write("## Explore the colos of your image")
+st.write("# Explore the colors of your image")
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
@@ -79,7 +79,8 @@ if my_upload is not None:#checking if an image is uploaded
     #transform numpy array to image in color mode 
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     # Display the image using streamlit
-    col1.image(img, channels="BGR", width=300)
+    col1.write("## IMAGE TO ANALYSE")
+    col1.image(img, channels="BGR", width=400 )
 
 
 
@@ -93,8 +94,13 @@ if my_upload is not None:#checking if an image is uploaded
 
         # Plotting
         fig, ax = plt.subplots()
-        ax.pie(sizes, labels=labels, autopct='%1.1f%%', colors=labels)
+        pie = ax.pie(sizes, labels=labels, autopct='%1.1f%%', colors=labels, labeldistance=1.1)
+        
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        for text in pie[1]:
+            text.set_verticalalignment('bottom')  # Aligning text vertically
+        ax.legend(loc="best", bbox_to_anchor=(0.1, 0.4))
 
         # Display pie chart using Streamlit
+        col2.write('## IMAGE PIE CHART')
         col2.pyplot(fig)
